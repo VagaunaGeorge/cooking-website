@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/_head'); %>
+
+    <body>
+        <%- include('./partials/_navbar'); %>
+            <div class="page">
+                <nav class="nav-bar">
+                    <form class="aside" action="/recipes">
+                        <div>
+                            <p class="filter-title">Choose ingredients</p>
+                            <div class="ingredients">
+                                <% for(let i=0; i<ingredients.length; i++) {%>
+                                    <input type="checkbox" class="checkbox" name="ingredients[]"
+                                        value="<%=ingredients[i]%>">
+                                    <%=ingredients[i]%><br>
+                                        <% } %>
+                            </div>
+                        </div>
+
+                        <div class="sorting">
+                            <p class="filter-title">Sort recipes by:</p>
+                            <select name="sorting" class="sorting">
+                                <option class="seletcted_sort" selected>Please select:</option>
+                                <% for(let i=0; i<sortPosibilities.length; i++) {%>
+                                    <option class="seletcted_sort" value="<%= sortPosibilities[i] %>" name="sorting">
+                                        <%= sortPosibilities[i] %>
+                                    </option>
+                                    <% } %>
+                            </select>
+                        </div>
+
+                        <div class="intolerances">
+                            <p class="filter-title">Any intolerances?</p>
+                            <% for(let i=0; i<intolerances.length; i++) {%>
+                                <input type="checkbox" class="checkbox" name="intolerances[]"
+                                    value="<%=intolerances[i]%>">
+                                <%=intolerances[i]%><br>
+                                    <% } %>
+                        </div>
+                        <div class="skills_lvl-filter">
+                            <p class="filter-title">Choose the skills level:</p>
+                            <% for(let i=0; i< skillsLevels.length; i++) {%>
+                                <input type="radio" class="skillsLevels" name="skillsLevels"
+                                    value="<%=skillsLevels[i]%>">
+                                <%=skillsLevels[i]%><br>
+                                    <% } %>
+                        </div>
+
+                        <div class="buttons">
+                            <button class="button filter-btn" type="submit" id="filter-btn" name="recipe_name"
+                                value="Submit">Filter</button>
+                        </div>
+                    </form>
+                </nav>
+                <div id="container">
+                    <div class="name-filter">
+                        <form>
+                            <input type="text" class="rec_search" id="name-input" placeholder="Enter recipe name"
+                                name="recipe">
+                            <button class="button filter-btn" type="submit" id="filter-btn"
+                                value="Submit">Search</button>
+                        </form>
+                    </div>
+                    <h2 class="title">Recipes:</h2>
+                    <ul class="products-list">
+                        <% for(let i=0; i<recipes.length; i++) {%>
+                            <li class="product">
+                                <h2 class="brand"><a class="brand-link"
+                                        href="details?recipe=<%=recipes[i].name%>&id=<%=recipes[i]._id%>"
+                                        target="_blank">
+                                        <img class="recipe-image" src="images/<%=recipes[i].photo%>"><br>
+                                        <%=recipes[i].brand%>
+                                            <%=recipes[i].name%>
+                                    </a></h2>
+                                <p class="skills_lvl">Difficulty level:
+
+                                    <% if (recipes[i].skills_lvl==="easy" ){ %>
+                                        <%=recipes[i].skills_lvl%>
+                                            <i style="color: green;" class="fa-solid fa-circle"></i>
+                                            <% } else{ %>
+                                                <% if (recipes[i].skills_lvl==="medium" ){ %>
+                                                    <%=recipes[i].skills_lvl%>
+                                                        <i style="color: orange;" class="fa-solid fa-circle"></i>
+                                                        <% } else{ %>
+                                                            <%=recipes[i].skills_lvl%>
+                                                                <i style="color: red;" class="fa-solid fa-circle"></i>
+                                                                <% } %>
+                                                                    <% } %>
+                                </p>
+                                <p>Cooking time: <%=recipes[i].cooking_time%>
+                                        <i class="fa-regular fa-clock"></i>
+                                </p>
+                                <p>Type: <%=recipes[i].rec_type%>
+                                </p>
+                            </li>
+                            <% } %>
+                    </ul>
+                    <!-- <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+                        <div class="toast-header">
+                            <strong class="me-auto">Bootstrap</strong>
+                            <small>11 mins ago</small>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Hello, world! This is a toast message.
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <%- include('./partials/_footer'); %>
+    </body>
+
+</html>

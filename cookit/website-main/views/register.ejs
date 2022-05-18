@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/_head'); %>
+
+  <body>
+    <%- include('./partials/_navbar'); %>
+      <div class="main__container__login">
+        <h1 class="main__title__login">Create a new account</h1>
+        <form method="post" id="form">
+          <p id="err__msg" class="errors" style='display: none;'></p>
+          <p>Please enter your First Name</p>
+          <div class="mb-3">
+            <i class="fa fa-user"></i>
+            <input type="text" placeholder="First name" class="form-control" id="fname" name="first_name">
+          </div>
+          <p>Please enter your Last Name:</p>
+          <div class="mb-3">
+            <i class="fa fa-user"></i>
+            <input type="text" placeholder="Last Name" class="form-control" id="lname" name="last_name">
+          </div>
+          <p>Enter your username/email:</p>
+          <div class="mb-3">
+            <i class="fa fa-user"></i>
+            <input type="email" placeholder="username" class="form-control" id="email" required
+              aria-describedby="emailHelp" name="email">
+            <span class="error" aria-live="polite"></span>
+          </div>
+          <p>Enter your password:</p>
+          <div class="mb-3">
+            <i class="fa fa-unlock"></i>
+            <input type="password" placeholder="password" class="form-control" id="password" name="password" required>
+          </div>
+          <p>Retype your password:</p>
+          <div class="mb-3">
+            <i class="fa fa-unlock"></i>
+            <input type="password" placeholder="password" class="form-control" id="repassword" name="repassword"
+              required>
+          </div>
+          <button type="submit" class="btn btn-primary main__button_login">Register</button>
+          <p class="text__login">You already have an account?&nbsp;<a class="link" href="/auth/login">Login</a></p>
+        </form>
+      </div>
+      <%- include('./partials/_footer'); %>
+  </body>
+
+</html>

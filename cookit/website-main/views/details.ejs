@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/_head'); %>
+  <%- include('./partials/_head_details'); %>
+
+
+    <body>
+      <%- include('./partials/_navbar'); %>
+        <div id="container"></div>
+
+        <h1 class="recipe_title">
+          <%=recipe.name%>
+        </h1>
+        <div class="recipe_container">
+          <img class="recipe_image" src="images/<%=recipe.photo%>" alt="photo">
+          <div class="details">
+            <div class="ingr_category">
+              <i class="fa-solid fa-utensils"></i>
+              <h5 class="recipe_subtitle">Difficulty:</h5>
+              <p class="recipe_skills">
+                <%=recipe.skills_lvl%>
+              </p>
+            </div>
+            <div class="ingr_category">
+              <i class="fa-solid fa-clock"></i>
+              <h5 class="recipe_subtitle">Time:</h5>
+              <p class="recipe_time">
+                <%=recipe.cooking_time%>
+              </p>
+            </div>
+            <div class="ingr_category">
+              <i class="fa-solid fa-bread-slice"></i>
+              <h5 class="recipe_subtitle">Quantity:</h5>
+              <p class="recipe_quantity">
+                <%=recipe.quantity%>
+              </p>
+            </div>
+            <div class="ingr_category">
+              <i class="fa-solid fa-ban"></i>
+              <h5 class="recipe_subtitle">Intolerances:</h5>
+              <div class="into_types">
+                <p class="recipe_into">Gluten:
+                  <%=recipe.into_gluten%>
+                </p>
+                <p class="recipe_into">Lactose:
+                  <%=recipe.into_lact%>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ingredients_list">
+            <h5 class="recipe_subtitle">
+              <i class="fa-solid fa-carrot"></i>Ingredients:
+            </h5>
+            <ul>
+              <% for(let i=0; i<recipe.ingredients.length; i++) {%>
+                <li class="ingredient">
+                  <%=recipe.ingredients[i].quantity%>
+                    <%=recipe.ingredients[i].ingr_name%><br>
+                      <% } %>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <div class="steps">
+          <h5 class="recipe_subtitle"><i class="fa-solid fa-shoe-prints"></i>Steps:</h5>
+          <div class="recipe_description">
+            <% for(let i=1; i<=recipe.description.length; i++) {%>
+              <h6>Step <%=i%>:</h6>
+              <%=recipe.description[i-1]%>
+                <% } %>
+
+          </div>
+        </div>
+        <div class="button_section">
+          <a href="/recipes">
+            <button class="button recipe_button">Back to recipes!</button>
+          </a>
+        </div>
+        <%- include('./partials/_footer'); %>
+    </body>
+
+</html>

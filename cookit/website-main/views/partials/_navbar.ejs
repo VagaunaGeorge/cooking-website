@@ -1,0 +1,13 @@
+<nav class="navigation">
+    <a href="#"><img class="menu-item logo-item" src="/images/logo.png"></a>
+    <a class="menu-item" href="/">Home&nbsp;&nbsp;<i class="fas fa-home"></i></a>
+    <a class="menu-item" href="/recipes">Recipes&nbsp;&nbsp;<i class="fa-solid fa-receipt"></i></a>
+    <% if(locals.user){ %>
+        <a class="menu-item" href="/user_info?<%=user_name%>" id="logged">
+            <%=user_name%>&nbsp;&nbsp;<i class="far fa-user"></i>
+        </a>
+        <a class="menu-item" href="/auth/logout">Logout&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+        <% } else{ %>
+            <a class="menu-item" href="/auth/login" id="logged">Login&nbsp;&nbsp;<i class="far fa-user"></i></a>
+            <% } %>
+</nav>

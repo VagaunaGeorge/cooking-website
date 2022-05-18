@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<%- include('./partials/_head'); %>
+
+  <body class="main-container">
+    <%- include('./partials/_navbar'); %>
+      <div>
+        <div class="main-card">
+          <h3>Hello, <%= user_name %>!</h3>
+          <img style="width: 100px; height: 100px;" src="images/logo.png" alt="image">
+          <div class="user_container">
+
+            <div class="user_info">
+              <h3>First name:</h3>
+              <p>
+                <%=user.first_name%>
+              </p>
+            </div>
+            <div class="user_info">
+              <h3>Last name:</h3>
+              <p>
+                <%=user.last_name%>
+              </p>
+            </div>
+            <div class="user_info">
+              <h3>Email:</h3>
+              <p>
+                <%=user.email%>
+              </p>
+            </div>
+          </div>
+          <div class="button_section">
+            <a href="/recipes">
+              <button class="button recipe_button">Back to recipes!</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <%- include('./partials/_footer'); %>
+  </body>
+
+</html>
