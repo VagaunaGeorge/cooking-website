@@ -1,2 +1,4 @@
-Deschidem in vs code doua terminale, unul pt API, unul pt website. Rulam in ambele "npm install". Dupa instalare, se ruleaza, in ambele "npm start".
-Api ul ruleaza pe portul 3001, iar website-ul pe portul 3000
+Deschidem in vs code doua terminale, unul pt API, unul pt website.
+Rulam in ambele "npm install". Dupa instalare, se ruleaza, in ambele "npm start".
+Api ul ruleaza pe portul 3001, iar website-ul pe portul 3000.
+Se deschide "http://localhost:3000"
