@@ -4,6 +4,11 @@
 
   <body>
     <%- include('./partials/_navbar'); %>
+      <div id="toast">
+        <div id="img"><i class="fa-solid fa-user-xmark"></i></div>
+        <div id="desc">A notification message..</div>
+      </div>
+
       <div class="main__container__login">
         <h1 class="main__title__login">Create a new account</h1>
         <form method="post" id="registerForm">
@@ -42,43 +47,28 @@
             <i class="fa fa-unlock"></i>
             <input type="password" placeholder="Password" class="form-control" id="repassword" name="repassword"
               required>
-
           </div>
           <div class="repasserror">Passwords don't match!</div>
+
+          <button id="regBtn" type="submit" class="btn btn-primary main__button_login">Register</button>
           <% if (regStatus=="true" ){ %>
             <script>
-              var form = document.getElementById('registerForm')
-              // Loop over them and prevent submission
-              form.addEventListener('submit', function (event) {
-                let email = document.getElementById("email").value;
-                event.preventDefault();
-                if (document.querySelector('.emailerror'))
-                  document.querySelector('.emailerror').className = 'showErrorEmail';
-              }, false)
-
+              var x = document.getElementById("toast")
+              x.className = "show";
+              setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+              var text = document.getElementById("desc");
+              text.textContent = "There is email is already registered."
             </script>
-            <% }else{ %>
-              <script>
-                var form = document.getElementById('registerForm')
-                // Loop over them and prevent submission
-                form.addEventListener('submit', function (event) {
-                  let email = document.getElementById("email").value;
-                  if (document.querySelector('.showErrorEmail'))
-                    document.querySelector('.showErrorEmail').className = 'emailerror';
-                }, false)
-
-              </script>
-              <% } %>
-                <button id="regBtn" class="btn btn-primary main__button_login">Register</button>
-
-                <p class="text__login">You already have an account?&nbsp;<a class="link" href="/auth/login">Login</a>
-                </p>
+            <% } %>
+              <p class="text__login">You already have an account?&nbsp;<a class="link" href="/auth/login">Login</a>
+              </p>
 
         </form>
 
       </div>
       <%- include('./partials/_footer'); %>
         <script src="/jsFiles/registerValidation.js"></script>
+        <script src="/jsFiles/scr.js"></script>
 
   </body>
 
