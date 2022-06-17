@@ -4,14 +4,20 @@
 
   <body>
     <%- include('./partials/_navbar'); %>
+
+      <div id="toast">
+        <div id="img"><i class="fa-solid fa-user-xmark"></i></div>
+        <div id="desc">A notification message..</div>
+      </div>
+
       <div class="main__container__login">
         <h1 class="main__title__login">Log in to your account</h1>
-        <form method="post">
+        <form method="POST">
           <p>Enter your username/email:</p>
           <div class="mb-3">
             <i class="fa fa-user"></i>
-            <input type="email" placeholder="username" class="form-control" id="exampleInputEmail1"
-              aria-describedby="emailHelp" name="email">
+            <input type="email" placeholder="username" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+              name="email">
           </div>
           <p>Enter your password:</p>
           <div class="mb-3">
@@ -19,13 +25,23 @@
             <input type="password" placeholder="password" class="form-control" id="exampleInputPassword1"
               name="password">
           </div>
-
           <button type="submit" class="btn btn-primary main__button_login">Login</button>
-          <p class="text__login">You don't have an account?&nbsp;<a class="link" href="/auth/register">Register</a></p>
+          <% if (errStatus=="true" ){ %>
+            <script>
+              var x = document.getElementById("toast")
+              x.className = "show";
+              setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+              var text = document.getElementById("desc");
+              text.textContent = "Invalid username or password!"
+            </script>
+            <% } %>
+              <p class="text__login">You don't have an account?&nbsp;<a class="link" href="/auth/register">Register</a>
+              </p>
         </form>
 
       </div>
       <%- include('./partials/_footer'); %>
   </body>
+
 
 </html>
