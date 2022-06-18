@@ -47,12 +47,12 @@ router.post('/login', async function (req, res) {
   db = result.db(dbName);
   collection = db.collection('users');
   let users = await collection.find({}).toArray();
-  logUser = users.find(i => i.email === req.body.email && i.password === req.body.password);
+  logUser = users.filter(i => i.email === req.body.email && i.password === req.body.password);
 
   if (logUser.length === 0) {
-    res.status(404).send("Incorrect username or password.");
+    res.status(404).json("Incorrect username or password.");
   } else {
-    res.status(200).send(logUser);
+    res.status(200).json(logUser);
   }
 })
 
@@ -93,14 +93,14 @@ router.post('/register', async function (req, res) {
   }
 
   if (existingUser.length !== 0) {
-    res.status(409).send("Conflict! There are already an account having this email!");
+    res.status(409).json("Conflict! There are already an account having this email!");
   }
   else {
     collection.insertOne(newUser, function (err, res) {
       if (err) throw err;
       console.log("1 document inserted");
     });
-    res.status(200).send("Success! User has been added!")
+    res.status(200).json(newUser)
   }
 
 });

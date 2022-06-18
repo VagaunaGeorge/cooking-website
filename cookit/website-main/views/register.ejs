@@ -4,43 +4,72 @@
 
   <body>
     <%- include('./partials/_navbar'); %>
+      <div id="toast">
+        <div id="img"><i class="fa-solid fa-user-xmark"></i></div>
+        <div id="desc">A notification message..</div>
+      </div>
+
       <div class="main__container__login">
         <h1 class="main__title__login">Create a new account</h1>
-        <form method="post" id="form">
+        <form method="post" id="registerForm">
           <p id="err__msg" class="errors" style='display: none;'></p>
           <p>Please enter your First Name</p>
           <div class="mb-3">
             <i class="fa fa-user"></i>
             <input type="text" placeholder="First name" class="form-control" id="fname" name="first_name">
+
           </div>
+          <div class="ferror">First name must be between 3 and 20 characters.</div>
           <p>Please enter your Last Name:</p>
           <div class="mb-3">
             <i class="fa fa-user"></i>
             <input type="text" placeholder="Last Name" class="form-control" id="lname" name="last_name">
           </div>
+          <div class="lerror">Last name must be between 3 and 20 characters.</div>
           <p>Enter your username/email:</p>
           <div class="mb-3">
             <i class="fa fa-user"></i>
-            <input type="email" placeholder="username" class="form-control" id="email" required
+            <input type="email" placeholder="Username" class="form-control" id="email" required
               aria-describedby="emailHelp" name="email">
-            <span class="error" aria-live="polite"></span>
+            <span aria-live="polite"></span>
           </div>
+          <div class="emailerror">This email is already used!</div>
+
           <p>Enter your password:</p>
           <div class="mb-3">
             <i class="fa fa-unlock"></i>
-            <input type="password" placeholder="password" class="form-control" id="password" name="password" required>
+            <input type="password" placeholder="Password" class="form-control" id="password" name="password" required>
+
           </div>
+          <div class="passerror">Password should have at least 6 characters. </div>
           <p>Retype your password:</p>
           <div class="mb-3">
             <i class="fa fa-unlock"></i>
-            <input type="password" placeholder="password" class="form-control" id="repassword" name="repassword"
+            <input type="password" placeholder="Password" class="form-control" id="repassword" name="repassword"
               required>
           </div>
-          <button type="submit" class="btn btn-primary main__button_login">Register</button>
-          <p class="text__login">You already have an account?&nbsp;<a class="link" href="/auth/login">Login</a></p>
+          <div class="repasserror">Passwords don't match!</div>
+
+          <button id="regBtn" type="submit" class="btn btn-primary main__button_login">Register</button>
+          <% if (regStatus=="true" ){ %>
+            <script>
+              var x = document.getElementById("toast")
+              x.className = "show";
+              setTimeout(function () { x.className = x.className.replace("show", ""); }, 5000);
+              var text = document.getElementById("desc");
+              text.textContent = "There is email is already registered."
+            </script>
+            <% } %>
+              <p class="text__login">You already have an account?&nbsp;<a class="link" href="/auth/login">Login</a>
+              </p>
+
         </form>
+
       </div>
       <%- include('./partials/_footer'); %>
+        <script src="/jsFiles/registerValidation.js"></script>
+        <script src="/jsFiles/scr.js"></script>
+
   </body>
 
 </html>
